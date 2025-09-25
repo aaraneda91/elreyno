@@ -6,7 +6,7 @@ import DashboardLayout from 'layout/Dashboard';
 import PagesLayout from 'layout/Pages';
 import SimpleLayout from 'layout/Simple';
 
-import { SimpleLayoutType } from 'config';
+import c, { SimpleLayoutType } from 'config';
 
 // pages routing
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
@@ -17,7 +17,10 @@ const MaintenanceComingSoon = Loadable(lazy(() => import('pages/maintenance/comi
 const AppContactUS = Loadable(lazy(() => import('pages/contact-us')));
 
 // render - sample page
-const SamplePage = Loadable(lazy(() => import('pages/extra-pages/sample-page')));
+//const SamplePage = Loadable(lazy(() => import('pages/extra-pages/sample-page')));
+const NewPost = Loadable(lazy(() => import('pages/posts/new-post')));
+
+const Home = Loadable(lazy(() => import('pages/home')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -29,44 +32,15 @@ const MainRoutes = {
       element: <DashboardLayout />,
       children: [
         {
-          path: 'sample-page',
-          element: <SamplePage />
-        }
-      ]
-    },
-    {
-      path: '/maintenance',
-      element: <PagesLayout />,
-      children: [
-        {
-          path: '404',
-          element: <MaintenanceError />
+          path: 'nuevo-post',
+          element: <NewPost />
         },
         {
-          path: '500',
-          element: <MaintenanceError500 />
-        },
-        {
-          path: 'under-construction',
-          element: <MaintenanceUnderConstruction />
-        },
-        {
-          path: 'coming-soon',
-          element: <MaintenanceComingSoon />
+          path: 'home',
+          element: <Home />
         }
       ]
-    },
-    {
-      path: '/',
-      element: <SimpleLayout layout={SimpleLayoutType.SIMPLE} />,
-      children: [
-        {
-          path: 'contact-us',
-          element: <AppContactUS />
-        }
-      ]
-    }
-  ]
+    }]
 };
 
 export default MainRoutes;

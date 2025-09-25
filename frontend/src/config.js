@@ -4,7 +4,7 @@ export const twitterColor = '#1DA1F2';
 export const facebookColor = '#3b5998';
 export const linkedInColor = '#0e76a8';
 
-export const APP_DEFAULT_PATH = '/sample-page';
+export const APP_DEFAULT_PATH = '/home';
 export const HORIZONTAL_MAX_ITEM = 7;
 export const DRAWER_WIDTH = 260;
 export const MINI_DRAWER_WIDTH = 60;
@@ -74,7 +74,7 @@ export const APP_AUTH = AuthProvider.JWT;
 
 const config = {
   fontFamily: `'Public Sans', sans-serif`,
-  i18n: 'en',
+  i18n: 'es',
   menuOrientation: MenuOrientation.VERTICAL,
   miniDrawer: false,
   container: true,
