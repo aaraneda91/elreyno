@@ -29,26 +29,14 @@ export default function DashboardLayout() {
 
   const { container, miniDrawer, menuOrientation } = useConfig();
 
-  const isHorizontal = menuOrientation === MenuOrientation.HORIZONTAL && !downLG;
-
-  // set media wise responsive drawer
-  useEffect(() => {
-    if (!miniDrawer) {
-      handlerDrawerOpen(!downXL);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [downXL]);
-
   if (menuMasterLoading) return <Loader />;
 
   return (
     <AuthGuard>
-      <Box sx={{ display: 'flex', width: '100%' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <Header />
-        {!isHorizontal ? <Drawer /> : <HorizontalBar />}
-
-        <Box component="main" sx={{ width: 'calc(100% - 260px)', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
-          <Toolbar sx={{ mt: isHorizontal ? 8 : 'inherit' }} />
+        <Box component="main" sx={{ flexGrow: 1, p: { xs: 2, sm: 3 } }}>
+          <Toolbar sx={{ mt: 1 }} />
           <Container
             maxWidth={container ? 'xl' : false}
             sx={{

@@ -6,21 +6,19 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 
 // project imports
-import AppBarStyled from './AppBarStyled';
 import HeaderContent from './HeaderContent';
-import IconButton from 'components/@extended/IconButton';
 
 import useConfig from 'hooks/useConfig';
-import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
+import { useGetMenuMaster } from 'api/menu';
 import { MenuOrientation, DRAWER_WIDTH, MINI_DRAWER_WIDTH } from 'config';
-
+import { useNavigate } from 'react-router-dom';
 // assets
-import MenuFoldOutlined from '@ant-design/icons/MenuFoldOutlined';
-import MenuUnfoldOutlined from '@ant-design/icons/MenuUnfoldOutlined';
+import Button from '@mui/material/Button';
 
 // ==============================|| MAIN LAYOUT - HEADER ||============================== //
 
 export default function Header() {
+  
   const downLG = useMediaQuery((theme) => theme.breakpoints.down('lg'));
   const { menuOrientation } = useConfig();
 
@@ -32,26 +30,12 @@ export default function Header() {
   // header content
   const headerContent = useMemo(() => <HeaderContent />, []);
 
+  const navigate = useNavigate();
+
   // common header
   const mainHeader = (
     <Toolbar>
-      {!isHorizontal ? (
-        <IconButton
-          aria-label="open drawer"
-          onClick={() => handlerDrawerOpen(!drawerOpen)}
-          edge="start"
-          color="secondary"
-          variant="light"
-          sx={(theme) => ({
-            color: 'text.primary',
-            bgcolor: drawerOpen ? 'transparent' : 'grey.100',
-            ...theme.applyStyles('dark', { bgcolor: drawerOpen ? 'transparent' : 'background.default' }),
-            ml: { xs: 0, lg: -2 }
-          })}
-        >
-          {!drawerOpen ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        </IconButton>
-      ) : null}
+      <Button onClick={() => { navigate('/home'); }}>Home</Button>
       {headerContent}
     </Toolbar>
   );
@@ -73,13 +57,7 @@ export default function Header() {
 
   return (
     <>
-      {!downLG ? (
-        <AppBarStyled open={drawerOpen} {...appBar}>
-          {mainHeader}
-        </AppBarStyled>
-      ) : (
-        <AppBar {...appBar}>{mainHeader}</AppBar>
-      )}
+        <AppBar>{mainHeader}</AppBar>
     </>
   );
 }

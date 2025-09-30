@@ -8,7 +8,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import AntAvatar from 'components/@extended/Avatar'; // Asegúrate de que la ruta sea correcta
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Home() {
     const [posts, setPosts] = useState([]);
@@ -27,25 +27,39 @@ export default function Home() {
 
     return(
         <div>
-        <Button variant="contained"  onClick={newPost}>Nuevo Post</Button >
-        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <Button variant="outlined"  onClick={newPost}>Nuevo Post</Button >
+        <Divider sx={{ my: 2 }} />
+        <List sx={{ width: '80%', bgcolor: 'background.paper' }}>
             {posts.map((post, idx) => (
                 <ListItem alignItems="flex-start" key={post.id || idx}>
                     <ListItemAvatar>
                         <AntAvatar alt={post.author} src="/src/assets/images/users/avatar-1.png" />
                     </ListItemAvatar>
                     <ListItemText
-                        primary={post.title}
+                        primary={
+                            <Link to={`/detalle-post/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                {post.title}
+                            </Link>
+                        }
+                        onClick={() => navigate(`/detalle-post/${post.id}`)}
                         secondary={
                             <>
                                 <Typography sx={{ display: 'inline' }} variant="body2" color="text.primary">
                                     {post.author}
                                 </Typography>
-                                {` — ${post.content}`}
+                                <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'right' }}>
+                                    {new Date(post.created_at).toLocaleString('es-CL', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    })}
+                                </Typography>
+                                <Divider sx={{ my: 1 }} />
                             </>
                         }
                     />
-                    {idx < posts.length - 1 && <Divider variant="inset" component="li" />}
                 </ListItem>
             ))}
         </List>

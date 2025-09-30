@@ -19,28 +19,33 @@ const AppContactUS = Loadable(lazy(() => import('pages/contact-us')));
 // render - sample page
 //const SamplePage = Loadable(lazy(() => import('pages/extra-pages/sample-page')));
 const NewPost = Loadable(lazy(() => import('pages/posts/new-post')));
+const PostDetail = Loadable(lazy(() => import('pages/posts/detail-post')));
 
 const Home = Loadable(lazy(() => import('pages/home')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
-  path: '/',
-  children: [
-    {
-      path: '/',
-      element: <DashboardLayout />,
-      children: [
-        {
-          path: 'nuevo-post',
-          element: <NewPost />
-        },
-        {
-          path: 'home',
-          element: <Home />
-        }
-      ]
-    }]
+	path: '/',
+	children: [
+		{
+			path: '/',
+			element: <DashboardLayout />,
+			children: [
+				{
+					path: 'nuevo-post',
+					element: <NewPost />
+				},
+				{
+					path: 'detalle-post/:id',
+					element: <PostDetail />
+				},
+				{
+					path: 'home',
+					element: <Home />
+				}
+			]
+		}]
 };
 
 export default MainRoutes;
