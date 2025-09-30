@@ -1,0 +1,5 @@
+.quill {
+  display: flex;
+  flex-direction: column-reverse;
+  border: none !important;
+}

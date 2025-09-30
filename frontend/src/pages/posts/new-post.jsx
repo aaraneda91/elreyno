@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import ReactQuill from 'components/third-party/ReactQuill';
 import axiosServices from 'utils/axios';
 import { useNavigate } from 'react-router-dom';
-
+import 'assets/post-detail.css';
 
 
 export default function NewPost() {
@@ -34,11 +34,14 @@ export default function NewPost() {
 
 	return (
 		<MainCard title="Nuevo Post">
-			<FormControl fullWidth>
+			<FormControl fullWidth >
 				<TextField label="Título" variant="outlined" margin="normal" value={title} onChange={(e) => setTitle(e.target.value)} />
-				<ReactQuill value={content} onChange={setContent} />
-				{/* <TextField label="Contenido" variant="outlined" margin="normal" multiline rows={4} /> */}
-				<Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleSubmit}>
+				<ReactQuill value={content} onChange={setContent} className="react-quill-custom" />
+				<Button 
+					variant="contained" 
+					color="primary" 
+					sx={{ mt: 14, width: '10%' }} onClick={handleSubmit}
+				>
 					Publicar
 				</Button>
 			</FormControl>
