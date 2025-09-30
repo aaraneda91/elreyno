@@ -50,7 +50,7 @@ export default function DetailPost() {
         </Dialog>
 
         <MainCard title={post.title }>
-        <Typography variant="h1" dangerouslySetInnerHTML={{ __html: post.content }} />
+        <Typography variant="body1" dangerouslySetInnerHTML={{ __html: post.content }} />
             <Divider sx={{ my: 2 }} />
             <Button variant="outlined" onClick={() => setOpenDialog(true)} color="error">Eliminar</Button>
         </MainCard>
